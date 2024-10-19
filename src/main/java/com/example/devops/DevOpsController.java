@@ -11,8 +11,15 @@ public class DevOpsController {
     private static final String DEVOPS = "DEVOPS";
     private static final String DEVOPS_VARIABLE_IS_EMPTY_MESSAGE = "The 'DEVOPS' variable is empty!";
 
+    private static final String TEST_MESSAGE = "Test message!";
+
     @GetMapping("/devops")
     public String getDevOpsVariable() {
         return Optional.ofNullable(System.getenv(DEVOPS)).orElse(DEVOPS_VARIABLE_IS_EMPTY_MESSAGE);
+    }
+
+    @GetMapping("/test")
+    public String getTestMessage() {
+        return TEST_MESSAGE;
     }
 }
