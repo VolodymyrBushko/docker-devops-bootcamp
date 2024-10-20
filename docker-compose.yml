@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./html/hello-world.html:/usr/share/nginx/html/index.html
+    ports:
+      - "80:80"
+  spring_app:
+    image: volodymyrbushko/devops-spring-app:main
+    ports:
+      - "8080:8080"
+    environment:
+      DEVOPS: Volodymyr
+    depends_on:
+      - db
+  db:
+    image: mysql:8.0
+    restart: always
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: mydb
