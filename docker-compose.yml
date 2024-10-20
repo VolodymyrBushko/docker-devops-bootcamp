@@ -13,6 +13,9 @@ services:
       - "8080:8080"
     environment:
       DEVOPS: Volodymyr
+      DB_URL: jdbc:mysql://db:3306/mydb
+      DB_USERNAME: root
+      DB_PASSWORD: root
     depends_on:
       - db
   db:
