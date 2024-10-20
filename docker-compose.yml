@@ -12,10 +12,10 @@ services:
     ports:
       - "8080:8080"
     environment:
-      DEVOPS: Volodymyr
-      DB_URL: jdbc:mysql://db:3306/mydb
-      DB_USERNAME: root
-      DB_PASSWORD: root
+      DB_URL: ${DB_URL}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DEVOPS: ${DEVOPS}
     depends_on:
       db:
         condition: service_healthy
@@ -25,8 +25,8 @@ services:
     volumes:
       - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: mydb
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p$MYSQL_ROOT_PASSWORD" ]
       interval: 5s
