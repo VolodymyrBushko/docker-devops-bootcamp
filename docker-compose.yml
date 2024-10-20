@@ -4,7 +4,7 @@ services:
   nginx:
     image: nginx:latest
     volumes:
-      - ./html/hello-world.html:/usr/share/nginx/html/index.html
+      - ./html/index.html:/usr/share/nginx/html/index.html
     ports:
       - "80:80"
   spring_app:
